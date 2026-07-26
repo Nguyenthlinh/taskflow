@@ -30,3 +30,33 @@ logs/
 # OS
 .DS_Store
 Thumbs.db
+
+# Folders to hide - ẩn tất cả trừ TaskApi và TaskFlow-UI
+AnimalApp/
+AsyncApp/
+ClassroomApp/
+EFShopApp/
+PayrollApp/
+ProductApp/
+ProductWebApi/
+SQL/
+SchoolManagerApp/
+StudentGradeApp/
+
+# Hide documentation files
+Day0_QuickReview.md
+Day1_Notes.md
+Day2_Notes.md
+Day3_Notes.md
+Day4_Notes.md
+Day5_Notes.md
+Day6_Notes.md
+Day7_Notes.md
+Day8_Notes.md
+Day9_Notes.md
+Day10_Notes.md
+Day11_Notes.md
+Day12_Notes.md
+Day13_Notes.md
+Day14_Notes.md
+MASTER_REVIEW.md
