@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow – Đăng ký</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+
+    <!-- NỬA TRÁI -->
+    <div class="left-panel">
+        <div class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-check"></i></div>
+            <span class="logo-text">TaskFlow</span>
+        </div>
+
+        <h1 class="hero-title">
+            Bắt đầu hành trình<br>
+            <span>năng suất của bạn</span>
+        </h1>
+
+        <p class="hero-subtitle">
+            Tạo tài khoản miễn phí và bắt đầu quản lý công việc ngay hôm nay.
+        </p>
+
+        <div class="feature-list">
+            <div class="feature-item">
+                <div class="feature-icon" style="background:rgba(124,58,237,0.15)">
+                    <i class="fa-solid fa-list-check" style="color:#A78BFA"></i>
+                </div>
+                <span class="feature-text">Tạo và quản lý task dễ dàng</span>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon" style="background:rgba(16,185,129,0.15)">
+                    <i class="fa-solid fa-shield-halved" style="color:#34D399"></i>
+                </div>
+                <span class="feature-text">Dữ liệu bảo mật với JWT Token</span>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon" style="background:rgba(245,158,11,0.15)">
+                    <i class="fa-solid fa-chart-line" style="color:#F59E0B"></i>
+                </div>
+                <span class="feature-text">Theo dõi tiến độ theo thời gian thực</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- NỬA PHẢI -->
+    <div class="right-panel">
+        <div class="form-card">
+            <div class="form-header">
+                <h2>Tạo tài khoản 🚀</h2>
+                <p>Điền thông tin bên dưới để bắt đầu.</p>
+            </div>
+
+            <div class="error-msg"   id="errorMsg"></div>
+            <div class="success-msg" id="successMsg"></div>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <div class="input-wrapper">
+                        <span class="icon"><i class="fa-solid fa-user"></i></span>
+                        <input type="text" id="username"
+                            placeholder="Chọn username (tối thiểu 3 ký tự)" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Mật khẩu</label>
+                    <div class="input-wrapper">
+                        <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                        <input type="password" id="password"
+                            placeholder="Tạo mật khẩu (tối thiểu 6 ký tự)" required>
+                    </div>
+                    <!-- Thanh đo độ mạnh mật khẩu -->
+                    <div class="strength-bar">
+                        <div class="strength-segment"></div>
+                        <div class="strength-segment"></div>
+                        <div class="strength-segment"></div>
+                        <div class="strength-segment"></div>
+                        <div class="strength-segment"></div>
+                    </div>
+                    <p class="strength-label" id="strengthLabel"></p>
+                </div>
+
+                <div class="form-group">
+                    <label>Xác nhận mật khẩu</label>
+                    <div class="input-wrapper">
+                        <span class="icon"><i class="fa-solid fa-key"></i></span>
+                        <input type="password" id="confirmPassword"
+                            placeholder="Nhập lại mật khẩu" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-register" id="registerBtn">
+                    Tạo tài khoản
+                </button>
+            </form>
+
+            <p class="form-footer">
+                Đã có tài khoản?
+                <a href="login.html">Đăng nhập ngay</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="js/register.js"></script>
+</body>
+</html>
