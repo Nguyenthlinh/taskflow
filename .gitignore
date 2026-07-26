@@ -1,62 +1,43 @@
-# Windows / Visual Studio
-bin/
-obj/
-.vs/
-*.user
-*.suo
-*.userosscache
-*.sln.docstates
+# ===== CHỈ GIỮ LẠI: TaskApi, TaskFlow-UI, README.md =====
 
-# Build results
-[Dd]ebug/
-[Rr]elease/
-x64/
-x86/
+# Ẩn mọi thứ theo mặc định
+*
 
-# .NET
-*.dll
-*.exe
-*.pdb
-*.nupkg
+# Cho phép file này
+!.gitignore
 
-# Environment & secrets — KHÔNG đẩy file này lên GitHub!
-appsettings.Development.json
-*.env
+# Cho phép README
+!README.md
 
-# Logs
-*.log
-logs/
+# Cho phép thư mục TaskApi và toàn bộ nội dung bên trong
+!TaskApi/
+!TaskApi/**
 
-# OS
-.DS_Store
-Thumbs.db
+# Cho phép thư mục TaskFlow-UI và toàn bộ nội dung bên trong
+!TaskFlow-UI/
+!TaskFlow-UI/**
 
-# Folders to hide - ẩn tất cả trừ TaskApi và TaskFlow-UI
-AnimalApp/
-AsyncApp/
-ClassroomApp/
-EFShopApp/
-PayrollApp/
-ProductApp/
-ProductWebApi/
-SQL/
-SchoolManagerApp/
-StudentGradeApp/
-
-# Hide documentation files
-Day0_QuickReview.md
-Day1_Notes.md
-Day2_Notes.md
-Day3_Notes.md
-Day4_Notes.md
-Day5_Notes.md
-Day6_Notes.md
-Day7_Notes.md
-Day8_Notes.md
-Day9_Notes.md
-Day10_Notes.md
-Day11_Notes.md
-Day12_Notes.md
-Day13_Notes.md
-Day14_Notes.md
-MASTER_REVIEW.md
+# Ẩn các thư mục build, log, file nhạy cảm và tài liệu không cần thiết
+**/bin/
+**/obj/
+**/.vs/
+**/*.user
+**/*.suo
+**/*.userosscache
+**/*.sln.docstates
+**/[Dd]ebug/
+**/[Rr]elease/
+**/x64/
+**/x86/
+**/*.dll
+**/*.exe
+**/*.pdb
+**/*.nupkg
+**/appsettings.Development.json
+**/*.env
+**/*.log
+**/logs/
+**/.DS_Store
+**/Thumbs.db
+**/Day*.md
+**/MASTER_REVIEW.md
