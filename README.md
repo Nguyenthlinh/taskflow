@@ -75,6 +75,117 @@ TaskFlow-UI/
     ├── register.js
     └── tasks.js
 ```
+---
+
+## 📊 Sơ đồ hệ thống
+
+### 1. Sequence Diagram — Đăng nhập
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI as Frontend
+    participant API as Task API
+    participant Auth as AuthService
+    participant DB as Database
+
+    User->>UI: Nhập username/password
+    UI->>API: POST /api/auth/login
+    API->>Auth: LoginAsync(dto)
+    Auth->>DB: Tìm user theo username
+    DB-->>Auth: User data
+    Auth->>Auth: Verify password hash
+    Auth-->>API: Trả về JWT token
+    API-->>UI: 200 OK + token
+    UI->>User: Lưu token, chuyển sang trang task
+```
+
+### 2. Sequence Diagram — Tạo task
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI as Frontend
+    participant API as Task API
+    participant TaskS as TaskService
+    participant DB as Database
+
+    User->>UI: Nhấn Thêm task
+    UI->>API: POST /api/tasks + Bearer Token
+    API->>API: Kiểm tra JWT token → lấy userId
+    API->>TaskS: CreateAsync(task)
+    TaskS->>DB: INSERT TaskItem
+    DB-->>TaskS: Task được lưu
+    TaskS-->>API: Trả task mới
+    API-->>UI: 201 Created
+    UI->>User: Hiển thị task mới
+```
+
+### 3. Activity Diagram — Luồng tạo task
+
+```mermaid
+flowchart TD
+    A([User mở trang task]) --> B[Nhấn nút Thêm task]
+    B --> C[Frontend mở modal nhập thông tin]
+    C --> D[User nhập tiêu đề và mô tả]
+    D --> E[Frontend gửi POST /api/tasks với JWT]
+    E --> F{Dữ liệu hợp lệ?}
+    F -- Không --> G[API trả lỗi 400]
+    G --> H[Hiển thị thông báo lỗi]
+    H --> D
+    F -- Có --> I[API xác thực JWT và lấy userId]
+    I --> J[TaskService tạo task mới]
+    J --> K[(Database lưu task)]
+    K --> L[API trả 201 + task vừa tạo]
+    L --> M[Frontend cập nhật danh sách]
+    M --> N([Hiển thị task mới trên màn hình])
+```
+
+### 4. ERD — Quan hệ Database
+
+```mermaid
+erDiagram
+    USER ||--o{ TASK : owns
+    USER {
+        int Id PK
+        string Username
+        string PasswordHash
+        string Role
+    }
+    TASK {
+        int Id PK
+        string Title
+        string Description
+        bool IsCompleted
+        datetime CreatedAt
+        int UserId FK
+    }
+```
+
+### 5. Component Diagram — Kiến trúc tổng thể
+
+```mermaid
+flowchart LR
+    subgraph Frontend ["🖥️ TaskFlow-UI (Browser)"]
+        HTML["HTML / CSS / JS"]
+        LS["LocalStorage\n(JWT Token)"]
+    end
+
+    subgraph Backend ["⚙️ Task API (ASP.NET Core)"]
+        Auth["AuthService\n(Register/Login/Token)"]
+        TaskS["TaskService\n(CRUD Tasks)"]
+        EF["EF Core"]
+    end
+
+    DB[("🗄️ SQL Server\nTaskApiDB")]
+
+    HTML -->|"HTTPS /api/auth"| Auth
+    HTML -->|"HTTPS /api/tasks\n+ Bearer Token"| TaskS
+    HTML <-->|"read/write token"| LS
+    Auth --> EF
+    TaskS --> EF
+    EF --> DB
+```
 
 ---
 
